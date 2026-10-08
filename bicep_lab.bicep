@@ -1,14 +1,14 @@
-param location string = resourceGroup().location
+@description('Name of the storage account')
 param storageAccountName string = 'toylaunch${uniqueString(resourceGroup().id)}'
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-05-01' = {
   name: storageAccountName
-  location: location
+  location: 'spaincentral'
   sku: {
     name: 'Standard_LRS'
   }
   kind: 'StorageV2'
-  properties: {
-    accessTier: 'Hot'
-  }
+  properties: { }
 }
+
+output storageAccountId string = storageAccount.id
